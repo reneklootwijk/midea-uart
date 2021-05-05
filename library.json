@@ -1,0 +1,21 @@
+{
+  "name": "MideaUART",
+  "keywords": "airconditioner, midea, uart, dehumidifier, wifi",
+  "description": "Library implementing the protocol to communicate with Midea-like HVAC appliances",
+  "homepage": "https://github.com/reneklootwijk/midea-uart",
+  "authors": {
+    "name": "Rene Klootwijk",
+    "url": "https://github.com/reneklootwijk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reneklootwijk/midea-uart"
+  },
+  "dependencies": [],
+  "frameworks": "arduino",
+  "platforms": [
+    "espressif8266"
+  ],
+  "version": "0.1.1",
+  "license": "MIT"
+}
