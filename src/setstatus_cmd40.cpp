@@ -76,29 +76,62 @@ void Appliance::_setStatusCmd40(Status *newStatus, HandlerFn callback, uint8_t r
   cmd[12] = (newStatus->mode << 5) | ((setpoint - float(floor(setpoint))) > 0 ? 0x10 : 0x00) | (uint8_t)floor(setpoint - 16);
 
   // ABBBBBBB
-  // A: ?  
+  // A: timerSet  
   // B: fanSpeed
   //    0 - 100: Percentage
   //    101: Fixed
   //    102: Auto
-  cmd[13] = newStatus->fanSpeed;
+  cmd[13] = newStatus->fanSpeed | (newStatus->timerSet ? 0x80 : 0x00);
 
   // ABBBBBCC
-  // A: onTimerActive
-  // B: onTimerHours
-  // C: onTimerMinutes bits 0/1
-  cmd[14] = (newStatus->onTimer ? 0x80 : 0x00) | (newStatus->onTimerHours << 2) | ((newStatus->onTimerMinutes / 15) & 0x03);
+  // A: onTimer
+  // B: Hours
+  // C: Bits 0-1 of minutes
+  uint16_t totalOnMinutes = newStatus->onTimerHours * 60 + newStatus->onTimerMinutes;
+  uint8_t onHours = totalOnMinutes / 60;
+  uint8_t onMinutes = totalOnMinutes % 60;
+
+  if (onMinutes == 0 && onHours > 0) {
+      onMinutes = 60;
+      onHours--;
+  }
+
+  uint8_t onMinutesH = onMinutes / 15;
+  uint8_t onMinutesL = 15 - (onMinutes % 15);
+
+  if (onMinutes % 15 == 0) {
+      onMinutesL = 0;
+      onMinutesH ? onMinutesH-- : 0;
+  }
+
+  cmd[14] = (newStatus->onTimer ? 0x80 : 0x00) | ((onHours & 0x1F) << 2) | (onMinutesH & 0x03);
 
   // ABBBBBCC
-  // A: offTimerActive
-  // B: offTimerHours
-  // C: offTimerMinutes bits 0/1
-  cmd[15] = (newStatus->offTimer ? 0x80 : 0x00) | (newStatus->offTimerHours << 2) | ((newStatus->offTimerMinutes / 15) & 0x03);
+  // A: offTimer
+  // B: Hours
+  // C: Bits 0-1 of minutes
+  uint16_t totalOffMinutes = newStatus->offTimerHours * 60 + newStatus->offTimerMinutes;
+  uint8_t offHours = totalOffMinutes / 60;
+  uint8_t offMinutes = totalOffMinutes % 60;
 
+  if (offMinutes == 0 && offHours > 0) {
+      offMinutes = 60;
+      offHours--;
+  }
+
+  uint8_t offMinutesH = offMinutes / 15;
+  uint8_t offMinutesL = 15 - (offMinutes % 15);
+
+  if (offMinutes % 15 == 0) {
+      offMinutesL = 0;
+      offMinutesH ? offMinutesH-- : 0;
+  }
+  cmd[15] = (newStatus->offTimer ? 0x80 : 0x00) | ((offHours & 0x1F) << 2) | (offMinutesH & 0x03);
+  
   // AAAABBBB
-  // A: onTimerMinutes bits 2-6
-  // B: offTimerMinutes bits 2-6
-  cmd[16] = ((( newStatus->onTimerMinutes % 15)& 0x0F) << 4) | ((newStatus->offTimerMinutes % 15) & 0x0F);
+  // A: Bits 2-5 of minutes on timer 
+  // B: Bits 2-5 of minutes off timer
+  cmd[16] = ((onMinutesL & 0x0F) << 4) | (offMinutesL & 0x0F);
 
   // AAAABBCC
   // A: 3

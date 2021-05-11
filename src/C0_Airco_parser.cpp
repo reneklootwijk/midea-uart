@@ -56,12 +56,18 @@ void Appliance::_processC0_Airco(uint8_t data[], uint8_t length) {
   status.offTimer = ((data[5] & 0x80) >> 7) > 0;
  
   status.onTimerHours = status.onTimer ? (data[4] & 0x7C) >> 2 : 0;
-  // status.onTimerMinutes = status.onTimer ? (data[4] & 0x03) * 15 + (data[6] >> 4) : 0;
   status.onTimerMinutes = status.onTimer ? ((data[4] & 0x03) + 1) * 15 - (data[6] >> 4) : 0;
-  status.offTimerHours = status.offTimer ? (data[5] & 0x7C) >> 2 : 0;
-  // status.offTimerMinutes = status.offTimer ? (data[5] & 0x03) * 15 + (data[6] & 0x0F) : 0;
-  status.offTimerMinutes = status.offTimer ? ((data[5] & 0x03) + 1) * 15 - (data[6] & 0x0F) : 0;
+  if(status.onTimerMinutes == 60) {
+      status.onTimerMinutes = 0;
+      status.onTimerHours++;
+  }
 
+  status.offTimerHours = status.offTimer ? (data[5] & 0x7C) >> 2 : 0;
+  status.offTimerMinutes = status.offTimer ? ((data[5] & 0x03) + 1) * 15 - (data[6] & 0x0F) : 0;
+  if(status.offTimerMinutes == 60) {
+      status.offTimerMinutes = 0;
+      status.offTimerHours++;
+  }
 
   // Byte 7
   // AAAABBCC

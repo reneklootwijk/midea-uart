@@ -5,7 +5,7 @@
   #include <string>
   #include "queue.h"
 
-#define LIBRARY_VERSION "0.1.0"
+#define LIBRARY_VERSION "0.1.1"
 
 const uint8_t LOG_ERROR = 0x00;
 const uint8_t LOG_WARNING = 0x01;
@@ -142,6 +142,7 @@ struct Capabilities {
     uint8_t timerOffMinutes;
     uint8_t timerOnMinutes;
     uint8_t timerMode;
+    bool timerSet;
     bool turboMode;
     bool updownFan;
     bool windOfMe;
@@ -199,6 +200,7 @@ struct Capabilities {
       void getStatusCmdB1(HandlerFn, uint8_t);
       void getStatusCmdB1(uint16_t, HandlerFn);
       void getStatusCmdB1(uint16_t, HandlerFn, uint8_t);
+      bool initialized = false;
       void loop(void);
       void registerLogger(LoggerFn);
       void reportNetworkStatus(void);
@@ -318,6 +320,7 @@ struct Capabilities {
         0,     // timerOffMinutes
         0,     // timerOnMinutes
         0,     // timerMode
+        false, // timerSet
         false, // turboMode
         false, // updownFan
         false, // windOfMe

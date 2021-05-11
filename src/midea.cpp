@@ -145,6 +145,7 @@ void Appliance::_processResponse(uint8_t data[], uint8_t length) {
       if(_applianceType != 0xAC) {
         _logger(LOG_ERROR, "Unsupported appliance type detected: " + _applianceType);
       } else {
+        initialized = true;
         _logger(LOG_INFO, "Appliance recognized as airconditioner");
       }
       break;
