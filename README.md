@@ -153,6 +153,10 @@ Methods that support callback handlers, expect either NULL as the callback handl
 Direct position of the vertical and/or horizontal swing.
 Not all features could be tested on a real appliance. Pull requests and/or bug reports are welcome.
 
-# To do
+## To do
 
 Support for dehumidifiers en humidifiers.
+
+## Supported devices
+
+[This page](./SUPPORTED-DEVICES.md) lists all devices reported to be working with this library.
