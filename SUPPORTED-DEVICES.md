@@ -9,14 +9,17 @@ This list is intended to collect and show the different manufacturer labels that
 |Alpine Home Air|Blueridge Ductless|2020|US|BM12MCCG|
 ||Blueridge Ductless|2020|US|BM18MCD|
 |Artel|Multisplit|2020|EU|AMXD9RP24|
+|Beko|BRWPG120||EU|
 |Comfee|MSAFA-09HRN1-QC2|2019|RU||
 |Electrolux|EACS/I-09HAT/N3||||
 ||EACS/I-12HAT/N3||||
+||SIRIUS-12E IU|2018|EU|
 |Idea|ISR-09HR-MA0-DN1||UA||
 |Inventor|Aria|2019|EU|AR2MVI|
 ||Aria|2021|EU|AR2MVI-S|
 ||Passion|2021|EU|P9VI32|
 |Midea|MAW08V1QWT|2021|US||
+||Mission||EU|MB09N8D6|
 ||MSAFB-12HRDN1-QC2|2018|ZA||
 |Mr. Cool|Minisplit DIY|2019|US|DIY-18-WMAH-HP-230A|
 ||Minisplit DIY MultiZone AC/Heatpump|2020|US|DIY-09-HP-WMAH-230B|
@@ -24,6 +27,7 @@ This list is intended to collect and show the different manufacturer labels that
 |Olimpia Splendid|Nexa S4E|2019|EU||
 |Pioneer|WYS18|2021|US||
 |QLIMA|SC-JA2516|2018|EU||
+|Royal Clima|Triumph Inverter|2021|RU|RCI-TM09HN|
 |Toshiba|RAC-WK0812ESCWRU|2019|US||
 
 ## Support this list
