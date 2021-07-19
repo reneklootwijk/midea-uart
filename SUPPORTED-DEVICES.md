@@ -2,12 +2,13 @@
 
 ## Manufacturer list of supported devices
 
-This list is intended to collect and show the different manufacturer labels that work together with this component. This list is a work-in-progress and therefor not complete, but it gives you an idea which models are tested and known working.
+This list is intended to collect and show the different manufacturer labels that are supported by this library. The list will be updated when new information is provided by the users of the library.
 
 |Manufacturer|Model|Year|Market|Model ID|
 |---|---|---|---|---|
 |Alpine Home Air|Blueridge Ductless|2020|US|BM12MCCG|
 ||Blueridge Ductless|2020|US|BM18MCD|
+|Artel|Multisplit|2020|EU|AMXD9RP24|
 |Comfee|MSAFA-09HRN1-QC2|2019|RU||
 |Electrolux|EACS/I-09HAT/N3||||
 ||EACS/I-12HAT/N3||||
@@ -27,4 +28,4 @@ This list is intended to collect and show the different manufacturer labels that
 
 ## Support this list
 
-If you have a device that is working with this component and you can't find it in this list, feel free to open an issue and get your data added! Thank you! 
+If this library is working for your device and your device is not in the list yet, you are invited to either issue a pull request to add the data of your device to the list or create an issue and provide the data so I can update the list.
