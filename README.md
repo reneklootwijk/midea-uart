@@ -14,7 +14,7 @@ The appliance reports which features are supported to be controlled and/or monit
 | breezeControl | boolean | The appliance supports 3 different modes to control the breeze. |
 | buzzer | boolean | The appliance has a buzzer that can be controlled. Note: My appliance does not report this capability but I was still able to control the command notification buzzer via the *beep* status property. |
 | coolMode | boolean | The Cool mode can be activated and the *temperatureSetpoint* can be set. |
-| dimmableLight| true / false | The LED display can be toggled on and off. |
+| dimmableLight| boolean | The LED display can be toggled on and off. |
 | dryMode | boolean | The Dry mode can be activated. |
 | ecoMode | boolean | The Eco mode can be dis/enabled. |
 | electricAuxHeating | boolean | It is unclear what this capability means for the UART protocol. |
@@ -23,7 +23,7 @@ The appliance reports which features are supported to be controlled and/or monit
 | heatMode | boolean | The Heat mode can be activated and the *temperatureSetpoint* can be set. |
 | indoorHumidity | boolean | The indoor humidity is being reported. |
 | leftrightFan | boolean | The vertical fan can be dis/enabled. |
-| manualSetHumidity | false/ true | The *humiditySetpoint* can be specified in Dry mode. |
+| manualSetHumidity | boolean | The *humiditySetpoint* can be specified in Dry mode. |
 | nestCheck | boolean | It is unclear what this capability means for the UART protocol. |
 | nestNeedChange | boolean | It is unclear what this capability means for the UART protocol. |
 | maxTempAuto | temperature | The maximum *temperatureSetpoint* supported in Auto mode. When not specified the default is 31°C.|
@@ -40,14 +40,14 @@ The appliance reports which features are supported to be controlled and/or monit
 | specialEco | boolean | The Eco mode can be dis/enabled. |
 | turboCool | boolean | The Turbo mode can be dis/enabled while in Cool mode. |
 | turboHeat | boolean | The Turbo mode can be dis/enabled while in Heat mode. |
-| unitChangeable | boolean | The temperature unit can be changed from Celcius to Fahrenheit. Conversion between Fahrenheit and Celcius has to be done by the calling application, the UART protocol always uses Celcius for reporting and changing the setpoint. Note: Not all appliances report this capability correctly. |
+| unitChangeable | boolean | The temperature unit can be changed from Celsius to Fahrenheit. Conversion between Fahrenheit and Celsius has to be done by the calling application, the UART protocol always uses Celsius for reporting and changing the setpoint. Note: Not all appliances report this capability correctly. |
 | updownFan | boolean | The horizontal fan can be dis/enabled. |
 | windOfMe | boolean | The Wind On Me mode can be dis/enabled. |
 | windOnMe | boolean | The Wind Off Me mode can be dis/enabled. |
 
 ## Status properties
 
-The status of the appliance is reported and can be controlled via the UART protocol using various properties.  The following table shows all properties known, what possible values can be, which method can be used to set or get thee value of the proprety, which appliance type supports the property.
+The status of the appliance is reported and can be controlled via the UART protocol using various properties. The following table shows all properties known, what possible values can be, which method can be used to set or get the value of the property, which appliance type supports the property.
 
 Not all properties are supported by all types of appliances and by all models of these appliances.
 
@@ -87,7 +87,7 @@ Not all properties are supported by all types of appliances and by all models of
 | outdoorTemperature | float | - | getStatusCmd41 | Airconditioner | The outdoor temperature as measured by the outdoor unit. The unit reported is determined by the value of the *temperatureUnit* property. |
 | peakElec | boolean | setStatusCmd40 | getStatusCmd41 | Airconditioner | Unknown |
 | pmvMode | uint8_t | - | getStatusCmd41 | Airconditioner | Probably the "Predictive Mean Vote", the experienced temperature. Not reported by any known appliances. |
-|powerUsage | unt16_t | - | getPowerUsage | Airconditioner | The pwoer usage in Wh. |
+| powerUsage | unt16_t | - | getPowerUsage | Airconditioner | The power usage in Wh. |
 | powerOn | boolean | setStatusCmd40 | getStatusCmd41 | Airconditioner | Power status of the appliance. |
 | ptcHeater | boolean | setStatusCmd40 | getStatusCmd41 | Airconditioner | Status of the electrical heating support when available. |
 | resume | boolean | setStatusCmd40 | getStatusCmd41 | Airconditioner | Probably the status of the resume mode after recovered from a powerloss. |
@@ -97,7 +97,7 @@ Not all properties are supported by all types of appliances and by all models of
 | setNewTemperature | uint8_t | setStatusCmd40 | getStatusCmd41 | Airconditioner | Probably legacy support. When set > 0 this will override the *temperatureSetpoint* property. |
 | sleepMode | boolean | setStatusCmd40 | getStatusCmd41 | Airconditioner | The status of the sleep mode. |
 | temperatureSetpoint | float | setStatusCmd40 | getStatusCmd41 | Airconditioner | The temperature setpoint used in *Cool* and *Heat* mode. |
-| temperatureUnit | uint8_t<br>0: Celcius<br>1: Fahrenheit| setStatusCmd40 | getStatusCmd41 | Airconditioner | Unit used to specify and present temperatures. |
+| temperatureUnit | uint8_t<br>0: Celsius<br>1: Fahrenheit| setStatusCmd40 | getStatusCmd41 | Airconditioner | Unit used to specify and present temperatures. |
 | test2 | boolean | setStatusCmd40 | getStatusCmd41 | Airconditioner | Unknown |
 | timerMode | uint8_t<br>0: Relative<br>Absolute | setStatusCmd40 | getStatusCmd41 | Airconditioner | Mode used for the on and off timers. No appliances known that support the absolute mode. |
 | turboMode | boolean | setStatusCmd40 |getStatusCmd41 | Airconditioner | Turbo mode in *Cool* or *Heat* mode. |
@@ -105,7 +105,7 @@ Not all properties are supported by all types of appliances and by all models of
 
 ## Methods
 
-Some method support the callback argument which either has to be NULL or the address of a function that must be called when the reponse from the appliance has been received. See the description of the [Callback Handler](#callback-handler) for more details.
+Some method support the callback argument which either has to be NULL or the address of a function that must be called when the response from the appliance has been received. See the description of the [Callback Handler](#callback-handler) for more details.
 
 ### getCapabilities(HandlerFn callback)
 
