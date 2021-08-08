@@ -234,12 +234,12 @@ bool Appliance::_processB5(uint8_t data[], uint8_t length) {
             } else {
               capabilities.decimals = data[i + 5] != 0;
             }
+          }
           break;
 
         case 0x2C:
           capabilities.buzzer = data[i + 3] != 0;
           break;
-        }
       }
     }
 
