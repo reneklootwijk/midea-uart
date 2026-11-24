@@ -1,6 +1,6 @@
 # MideaUART
 
-work in progress....
+This repo is no longer maintained.
 
 ## Features supported by the appliance
 
